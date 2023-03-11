@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {SummaryItem} from "./SummaryItem";
 
-export function Summary({items = [], onOrderSubmit}) {
+export function Summary({items = [], onOrderSubmit},props) {
     const totalPrice = items.reduce((previousValue, currentValue) => previousValue + (currentValue.price * currentValue.count), 0);
     const [order, setOrder] = useState({
         email: "", address: "", postcode: ""
@@ -17,6 +17,8 @@ export function Summary({items = [], onOrderSubmit}) {
             alert("입력값을 확인하세요!")
         }else{
             onOrderSubmit(order);
+            window.location.reload();
+
         }
     }
     return (
@@ -27,7 +29,7 @@ export function Summary({items = [], onOrderSubmit}) {
             <hr/>
             {items.map(v => <SummaryItem key={v.productId} count={v.count} productName={v.productName}/>)}
 
-            <form>
+            <form id ="frm">
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">이메일</label>
                     <input type="email" className="form-control mb-1" value={order.email} onChange={handleEmailInputChanged} id="email"/>

@@ -9,18 +9,24 @@ export function Product(props) {
     const handleAddBtnClicked = e =>{
        props.onAddClick(productId);
     };
+    const handleDeleteBtnClicked = e =>{
+        props.onDeleteClick(productId);
+    };
     return <>
             <div className="col-2">
                 <img className="img-fluid" src="https://i.imgur.com/HKOFQYa.jpeg" alt=""/>
             </div>
             <div className="col">
-                <div className="row text-muted">{category}</div>
-                <div className="row">{productName}</div>
+                <div className="row text-muted">{[productName]}</div>
+                <div className="row">{category}</div>
             </div>
             <div className="col text-center price">{price}원</div>
             <div className="col text-end action">
                 <button onClick={handleAddBtnClicked} className="btn btn-small btn-outline-dark">추가</button>
             </div>
+        <div className="col text-end action">
+            <button onClick={handleDeleteBtnClicked} className="btn btn-small btn-outline-dark">삭제</button>
+        </div>
 
         </>
 
